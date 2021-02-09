@@ -58,3 +58,14 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+#Large files that wont be modified so no need to track
+Assets/The Great Fleece/Game/_Scenes/Learning/Environment_Finished/LightingData.asset
+Assets/The Great Fleece/Game/_Scenes/Learning/Environment_Finished/LightingData.asset.meta
+Assets/The Great Fleece/Game/_Scenes/Learning/Environment_Start/LightingData.asset
+Assets/The Great Fleece/Game/_Scenes/Learning/Environment_Start/LightingData.asset.meta
+Assets/The Great Fleece/Game/Models/
+Assets/The Great Fleece/PostProcessing/Textures/Lens Dirt/LensDirt02.png
+Assets/The Great Fleece/PostProcessing/Textures/Lens Dirt/LensDirt02.png.meta
+
+
