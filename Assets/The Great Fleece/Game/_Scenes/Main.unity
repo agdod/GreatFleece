@@ -32061,6 +32061,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49be4103b035b448cb277ad3ac4b48f7, type: 3}
+--- !u!95 &1834643131 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95483830545951576, guid: 49be4103b035b448cb277ad3ac4b48f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1834643130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1836968441
 GameObject:
   m_ObjectHideFlags: 0
@@ -32185,6 +32191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1856203726}
+  - component: {fileID: 1856203727}
   m_Layer: 0
   m_Name: SleepingGuardCutScene
   m_TagString: Untagged
@@ -32208,6 +32215,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &1856203727
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856203725}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 90f1cc12eade15441aac1e5a120a35b5, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: -3037134539866732829, guid: 90f1cc12eade15441aac1e5a120a35b5, type: 2}
+    value: {fileID: 2043896032}
+  - key: {fileID: 2739518793959233870, guid: 90f1cc12eade15441aac1e5a120a35b5, type: 2}
+    value: {fileID: 1834643131}
+  m_ExposedReferences:
+    m_References:
+    - bf6bd10b286ad164cb8b8033cef6cb9e: {fileID: 206350807}
+    - 03d4161efa7a004428e2304e15d0cd3b: {fileID: 1323647203}
 --- !u!1001 &1864232329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40398,6 +40430,7 @@ GameObject:
   - component: {fileID: 2043896030}
   - component: {fileID: 2043896035}
   - component: {fileID: 2043896032}
+  - component: {fileID: 2043896036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -40497,8 +40530,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043896029}
-  m_LocalRotation: {x: -0.17889324, y: 0.8175662, z: -0.240244, w: -0.4917983}
-  m_LocalPosition: {x: 3.4, y: 2.51, z: -106.77}
+  m_LocalRotation: {x: 0.107123874, y: 0.8154925, z: -0.16005787, w: 0.5457821}
+  m_LocalPosition: {x: -5.842563, y: 3.3827178, z: -106.047165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -40517,6 +40550,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 1424e5ab37c0046868c6691a0d72cb38, type: 2}
+--- !u!95 &2043896036
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043896029}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2045439348
 GameObject:
   m_ObjectHideFlags: 0
