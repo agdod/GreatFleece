@@ -43,8 +43,6 @@ public class Player : MonoBehaviour
 			// Debug the floor position
 			// Debug.Log("hit at :" + hit.point);
 			_destination = hit.point;
-			// As player isnt climbing y-axis serves no purpose (floor could be higher or lower)
-			_destination.y = 0;
 			_agent.SetDestination(_destination);
 
 			// Start to move the Player, player isnt at destination
