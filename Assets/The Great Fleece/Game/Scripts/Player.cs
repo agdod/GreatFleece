@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 		if (Physics.Raycast(ray, out hit, 100))
 		{
 			// Debug the floor position
-			Debug.Log("hit at :" + hit.point);
+			// Debug.Log("hit at :" + hit.point);
 			_destination = hit.point;
 			// As player isnt climbing y-axis serves no purpose (floor could be higher or lower)
 			_destination.y = 0;
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
 		double destinationX = System.Math.Round(_destination.x, 1);
 		double destinationZ = System.Math.Round(_destination.z, 1);
 
-		Debug.Log("xPos,zPos : " + xPos + "," + zPos);
+		// Debug.Log("xPos,zPos : " + xPos + "," + zPos);
 		if(xPos == destinationX && zPos == destinationZ)
 		{
 			// player is idle at destination
