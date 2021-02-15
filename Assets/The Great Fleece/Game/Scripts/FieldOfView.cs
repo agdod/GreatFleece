@@ -18,7 +18,6 @@ public class FieldOfView : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("TRiggered by : " + other);
 		if (other.tag =="Player")
 		{
 			// Enable cut scene
