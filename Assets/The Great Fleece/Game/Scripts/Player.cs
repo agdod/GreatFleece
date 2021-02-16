@@ -5,10 +5,12 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
+	[SerializeField] private GameObject _coinPrefab;
 	[SerializeField] private NavMeshAgent _agent;
 	[SerializeField] private Animator _anim;
+	[SerializeField] private GuardController _guardController;
 
-	private bool _hasArrived;
+	private bool _coinTossed = false;
 	private Vector3 _destination;
 
 	private void Start()
@@ -28,26 +30,67 @@ public class Player : MonoBehaviour
 		// Get left mouse button click
 		if (Input.GetMouseButtonDown(0))
 		{
-			RayCastPosition();
+			RayCastPosition(true);
+		}
+		if (Input.GetMouseButtonDown(1))
+		{
+			if (!_coinTossed )
+			{
+				_anim.SetTrigger("Throw");
+				// Add 0.5s delay before instantie coin to fit more wiht animation
+				RayCastPosition(false);
+			}
+			
 		}
 		CheckPlayerPosition();
 	}
 
-	void RayCastPosition()
+	void GetAnimationState()
 	{
+		// Collect current animation state to return to after throw
+		
+	}
+
+	void RayCastPosition(bool player)
+	{
+		// if player is true left mouse button was clikced and player is moved
+		// else right mouse button was clicked and coin is tossed
+		
 		// Cast a ray from mouse position
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		if (Physics.Raycast(ray, out hit, 100))
 		{
-			// Debug the floor position
-			// Debug.Log("hit at :" + hit.point);
-			_destination = hit.point;
-			_agent.SetDestination(_destination);
-
-			// Start to move the Player, player isnt at destination
-			CheckPlayerPosition();
+			if (player)
+			{
+				MovePlayer(hit.point);
+			}
+			else
+			{
+				CoinToss(hit.point);
+			}
 		}
+	}
+
+	void CoinToss(Vector3 tossToPos)
+	{
+		_coinTossed = true;
+		if (_coinPrefab != null)
+		{
+			Instantiate(_coinPrefab, tossToPos, Quaternion.identity);
+			SendAIsToCoinSpot(tossToPos);
+		}
+		
+	}
+
+	void MovePlayer(Vector3 moveToPos)
+	{
+		_destination = moveToPos;
+
+		//Start to move the player
+		_agent.SetDestination(_destination);
+		//Check if player has arrived at destination
+		CheckPlayerPosition();
 	}
 
 	void CheckPlayerPosition()
@@ -81,4 +124,11 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	void SendAIsToCoinSpot(Vector3 position)
+	{
+		if (_guardController != null)
+		{
+			_guardController.DistractGuards(position);
+		}
+	}
 }

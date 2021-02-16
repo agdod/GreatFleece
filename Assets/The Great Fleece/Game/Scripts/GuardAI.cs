@@ -10,6 +10,9 @@ public class GuardAI : MonoBehaviour
 	private Animator _anim;
 	private bool _reverse;
 	private bool _targetReached;
+	private bool _foundCoin = false;
+	private bool _isDistracted = false;
+	private Vector3 _distractPos;
 	private int _wayPointIndex = 0;
 
 	private void Start()
@@ -20,18 +23,18 @@ public class GuardAI : MonoBehaviour
 			Debug.LogError("NavMeshAgent not found.");
 		}
 		_anim = GetComponent<Animator>();
-		if(_anim == null)
+		if (_anim == null)
 		{
 			Debug.LogError("Animator not found.");
 		}
 
 		_targetReached = false;
 
-		//If no waypoint set for guard default to idle
+		//If no waypoint set for guard default to idle, set waypoint[0] to current position
 		if (_wayPoints.Count == 0 || _wayPoints[0] == null)
 		{
 			_targetReached = true;
-			if (_anim !=null)
+			if (_anim != null)
 			{
 				_anim.SetBool("isWalking", false);
 			}
@@ -46,7 +49,14 @@ public class GuardAI : MonoBehaviour
 			{
 				_anim.SetBool("isWalking", true);
 			}
-			MoveGuard();
+			if (!_isDistracted)
+			{
+				MoveGuard();
+			}
+			else if (_isDistracted)
+			{
+				MoveDistractedGuard();
+			}
 		}
 	}
 
@@ -72,29 +82,64 @@ public class GuardAI : MonoBehaviour
 					IdleGuardControl();
 				}
 
-				// if guard has arrived set next target
-				UpDateWayPoint();
+				// Check guard isnt stationary , i.e has more than one way point
+				if (_wayPoints.Count > 1)
+				{
+					// Update next waypoint for guard
+					UpDateWayPoint();
+				}
 			}
 		}
 	}
 
-	void AnimateGuard()
+	void MoveDistractedGuard()
 	{
-		_anim.SetBool("isWalking", true);
+		// Move Distracted guard to coin spot location (_distractPos)
 
+		if (_navAgent != null)
+		{
+			_navAgent.SetDestination(_distractPos);
+		}
+		float distance = Vector3.Distance(transform.position, _distractPos);
+		if (distance < 2.0f && _targetReached == false)
+		{
+			Debug.Log("Coin spot distraction reached");
+			_foundCoin = true;
+			IdleGuardControl();
+		}
 	}
 
 	void IdleGuardControl()
 	{
-		float pause;
+		// Guard set to idle 
+		// Active coroutine to wait
 
+		float pause;
 		_targetReached = true;
 		pause = Random.Range(2, 5.0f);
 		if (_anim != null)
 		{
 			_anim.SetBool("isWalking", false);
 		}
-		StartCoroutine(WaitToMove(pause));
+
+		// Check Guard isnt Stationary - i.e has more than one waypoint - 
+		// If guard is distract - i.e coin toss, 
+
+		if (_wayPoints.Count > 1 || _isDistracted)
+		{
+			StartCoroutine(WaitToMove(pause));
+		}
+		else if (_wayPoints.Count == 1 && !_isDistracted)
+		{
+			RoatateGuard();
+		}
+	}
+
+	void RoatateGuard()
+	{
+		// rotate guard back to starting roation
+
+		Debug.Log("Back to stationary mode");
 	}
 
 	void UpDateWayPoint()
@@ -125,7 +170,40 @@ public class GuardAI : MonoBehaviour
 
 	IEnumerator WaitToMove(float delay)
 	{
+		Debug.Log(this.gameObject.name + " ,entering corountine");
 		yield return new WaitForSeconds(delay);
+
+		// When coroutnine is finished guard exits idle wait and makes way to next target
+		// 
+		Debug.Log(this.gameObject.name + " ,resuming after corountine wait");
+
+		// Reset target after idle wait at coin
+		if (_isDistracted && _foundCoin)
+		{
+			_targetReached = false;
+		}
+		
+		// if guard was distracted return to normal duties - ie no longer distracted
+		if (_isDistracted && _foundCoin)
+		{
+			_isDistracted = false;
+		}
+
+		// If guard wasnt distracted reset targetReached
+		if (!_isDistracted)
+		{
+			_targetReached = false;
+		}
+	}
+
+	public void DistractGuard(Vector3 moveToPos)
+	{
+		// Setup for distaction of guard
+		_distractPos = moveToPos;
+		_isDistracted = true;
 		_targetReached = false;
+		// Stop WaitToMove coroutine, so guard doesnt lose focus on distraction
+		Debug.Log("Stopping coroutine");
+		StopCoroutine(WaitToMove(0));
 	}
 }
