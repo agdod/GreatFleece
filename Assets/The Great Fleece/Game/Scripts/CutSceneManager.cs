@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class CutSceneManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _UIMenu;
-    [SerializeField] private GameObject _cutSceneIntro;
-    [SerializeField] private GameObject _cutSceneSleepingGuard;
-    [SerializeField] private GameObject _cutSceneCaptured;
-    [SerializeField] private GameObject _cutSceneSuccess;
+	[SerializeField] private GameObject _UIMenu;
+	[SerializeField] private GameObject _cutSceneIntro;
+	[SerializeField] private GameObject _cutSceneSleepingGuard;
+	[SerializeField] private GameObject _cutSceneCaptured;
+	[SerializeField] private GameObject _cutSceneSuccess;
 
-    public void EnableCaptured()
+	public void EnableCaptured()
 	{
-        _UIMenu.SetActive(true);
-        _cutSceneCaptured.SetActive(true);
+		_UIMenu.SetActive(true);
+		_cutSceneCaptured.SetActive(true);
+	}
+
+	public void EnableSleepingGuard()
+	{
+		_UIMenu.SetActive(true);
+		_cutSceneSleepingGuard.SetActive(true);
 	}
 }

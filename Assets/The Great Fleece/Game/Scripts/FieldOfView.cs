@@ -18,7 +18,7 @@ public class FieldOfView : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.tag =="Player")
+		if (other.tag == "Player")
 		{
 			// Enable cut scene
 			_cutSceneManager.EnableCaptured();

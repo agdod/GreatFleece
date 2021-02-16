@@ -182,7 +182,7 @@ public class GuardAI : MonoBehaviour
 		{
 			_targetReached = false;
 		}
-		
+
 		// if guard was distracted return to normal duties - ie no longer distracted
 		if (_isDistracted && _foundCoin)
 		{

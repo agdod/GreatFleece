@@ -10,7 +10,7 @@ public class SecurityCamera : MonoBehaviour
 
 	private void Start()
 	{
-		_anim = GetComponentInParent <Animator>();
+		_anim = GetComponentInParent<Animator>();
 	}
 
 	private void OnTriggerEnter(Collider other)

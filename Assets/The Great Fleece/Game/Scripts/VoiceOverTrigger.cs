@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VoiceOverTrigger : MonoBehaviour
 {
-    [SerializeField] private AudioSource _audioVO;
+	[SerializeField] private AudioSource _audioVO;
 	[SerializeField] private bool _playOnce;
 
 	private void Start()
@@ -22,7 +22,7 @@ public class VoiceOverTrigger : MonoBehaviour
 				_audioVO.Play();
 				_playOnce = true;
 			}
-			
+
 		}
 	}
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GuardController : MonoBehaviour
 {
-    // for sending batch commands to all guards
-    [SerializeField] private GuardAI[] _guardAIs;
+	// for sending batch commands to all guards
+	[SerializeField] private GuardAI[] _guardAIs;
 
 	private void Start()
 	{
@@ -14,7 +14,7 @@ public class GuardController : MonoBehaviour
 
 	public void DistractGuards(Vector3 position)
 	{
-		foreach(GuardAI guard in _guardAIs)
+		foreach (GuardAI guard in _guardAIs)
 		{
 			guard.DistractGuard(position);
 		}
