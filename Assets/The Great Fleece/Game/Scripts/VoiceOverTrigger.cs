@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class VoiceOverTrigger : MonoBehaviour
 {
-	[SerializeField] private AudioSource _audioVO;
+	[SerializeField] private AudioClip _audioVO;
 	[SerializeField] private bool _playOnce;
 
 	private void Start()
 	{
-		_audioVO = GetComponent<AudioSource>();
 		_playOnce = false;
 	}
 
@@ -19,7 +18,7 @@ public class VoiceOverTrigger : MonoBehaviour
 		{
 			if (!_playOnce)
 			{
-				_audioVO.Play();
+				GameManager.Instance.Audio.PlayVoiceOver(_audioVO);
 				_playOnce = true;
 			}
 

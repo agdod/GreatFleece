@@ -15,7 +15,7 @@ public class LookAtPlayer : MonoBehaviour
 
 	void Update()
 	{
-		// Rotate the camera every frame to kkep looking at player.
+		// Rotate the camera every frame to keep looking at player.
 		transform.LookAt(_target);
 
 	}
