@@ -21,4 +21,10 @@ public class CutSceneManager : MonoBehaviour
 		_UIMenu.SetActive(true);
 		_cutSceneSleepingGuard.SetActive(true);
 	}
+
+	public void EnableSuccess()
+	{
+		_UIMenu.SetActive(true);
+		_cutSceneSuccess.SetActive(true);
+	}
 }
