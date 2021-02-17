@@ -9,7 +9,6 @@ public class GrabKeyCardActivation : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("trigger sleeping guard");
 		if (other.tag == "Player")
 		{
 			// disable the card from the GO.

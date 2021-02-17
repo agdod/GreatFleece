@@ -74,7 +74,6 @@ public class GuardAI : MonoBehaviour
 			float distance = Vector3.Distance(transform.position, _wayPoints[_wayPointIndex].position);
 			if (distance < 1.0f && _targetReached == false)
 			{
-				Debug.Log("target reached");
 
 				// Idle guard pause if at start or end of way points
 				if (_wayPointIndex == 0 || _wayPointIndex == _wayPoints.Count - 1)
@@ -170,12 +169,9 @@ public class GuardAI : MonoBehaviour
 
 	IEnumerator WaitToMove(float delay)
 	{
-		Debug.Log(this.gameObject.name + " ,entering corountine");
 		yield return new WaitForSeconds(delay);
 
-		// When coroutnine is finished guard exits idle wait and makes way to next target
-		// 
-		Debug.Log(this.gameObject.name + " ,resuming after corountine wait");
+		// When coroutnine is finished guard exits idle wait, and makes way to next target
 
 		// Reset target after idle wait at coin
 		if (_isDistracted && _foundCoin)
@@ -203,7 +199,7 @@ public class GuardAI : MonoBehaviour
 		_isDistracted = true;
 		_targetReached = false;
 		// Stop WaitToMove coroutine, so guard doesnt lose focus on distraction
-		Debug.Log("Stopping coroutine");
+
 		StopCoroutine(WaitToMove(0));
 	}
 }
