@@ -77,7 +77,6 @@ public class CutSceneManager : MonoBehaviour
 		{
 			if ((int)_currentCutScene != i)
 			{
-				Debug.Log("current cut scene " + (int)_currentCutScene);
 				_cutSceneList[i].SetActive(false);
 			}
 		}
