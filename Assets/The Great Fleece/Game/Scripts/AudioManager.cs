@@ -11,4 +11,9 @@ public class AudioManager : MonoBehaviour
 		_voiceOver.clip = audioClip;
 		_voiceOver.Play();
 	}
+
+	public void StopVoiceOver()
+	{
+		_voiceOver.Stop();
+	}
 }

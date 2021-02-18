@@ -102,7 +102,6 @@ public class GuardAI : MonoBehaviour
 		float distance = Vector3.Distance(transform.position, _distractPos);
 		if (distance < 2.0f && _targetReached == false)
 		{
-			Debug.Log("Coin spot distraction reached");
 			_foundCoin = true;
 			IdleGuardControl();
 		}

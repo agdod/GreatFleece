@@ -57,6 +57,7 @@ public class CutSceneManager : MonoBehaviour
 	private void DisableAll()
 	// Checks and make sure all CutScene are disbled.
 	{
+		_UIMenu.SetActive(false);
 		for (int i = 0; i < _cutSceneList.Count; i++)
 		{
 			_cutSceneList[i].SetActive(false);
@@ -75,7 +76,7 @@ public class CutSceneManager : MonoBehaviour
 	{
 		_cutScenePlaying = true;
 		_currentCutScene = CutScene.Intro;
-		_UIMenu.SetActive(true);
+		//_UIMenu.SetActive(true);
 		_cutSceneList[(int)CutScene.Intro].SetActive(true);
 	}
 
@@ -83,7 +84,7 @@ public class CutSceneManager : MonoBehaviour
 	{
 		_cutScenePlaying = true;
 		_currentCutScene = CutScene.Captured;
-		_UIMenu.SetActive(true);
+		//_UIMenu.SetActive(true);
 		_cutSceneList[(int)CutScene.Captured].SetActive(true);
 	}
 
@@ -91,7 +92,7 @@ public class CutSceneManager : MonoBehaviour
 	{
 		_cutScenePlaying = true;
 		_currentCutScene = CutScene.SleepingGuard;
-		_UIMenu.SetActive(true);
+		//_UIMenu.SetActive(true);
 		_cutSceneList[(int)CutScene.SleepingGuard].SetActive(true);
 	}
 
@@ -99,7 +100,7 @@ public class CutSceneManager : MonoBehaviour
 	{
 		_cutScenePlaying = true;
 		_currentCutScene = CutScene.Success;
-		_UIMenu.SetActive(true);
+		//_UIMenu.SetActive(true);
 		_cutSceneList[(int)CutScene.Success].SetActive(true);
 	}
 }

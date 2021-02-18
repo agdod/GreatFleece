@@ -7,8 +7,6 @@ public class CameraTrigger : MonoBehaviour
 	// Check for Trigger of Player
 	// Update main camera to appropirate camera angle
 
-	// debug.log trigger activated
-
 	[SerializeField] private GameObject _cameraAngle;
 
 	private void OnTriggerEnter(Collider other)
@@ -19,8 +17,8 @@ public class CameraTrigger : MonoBehaviour
 			// Assigne the camera.transofmr.rotation == postion of the right camera rotation.
 			Vector3 cameraPos;
 			Vector3 cameraRot;
+
 			// Enable tracking in inspector which is current camera angle
-			Debug.Log("Current Camera Angle : " + _cameraAngle.name);
 			cameraPos = _cameraAngle.transform.position;
 			cameraRot =  _cameraAngle.transform.eulerAngles;
 
