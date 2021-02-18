@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private AudioManager _audioManager;
 	[SerializeField] private CutSceneManager _cutSceneManager;
+	[SerializeField] private UIManager _uiManager;
 	[SerializeField] private bool _hasCard;
 
 	[SerializeField] private bool _playIntro;
@@ -48,6 +49,11 @@ public class GameManager : MonoBehaviour
 	public AudioManager Audio
 	{
 		get { return _audioManager; }
+	}
+
+	public UIManager UI
+	{
+		get { return _uiManager; }
 	}
 
 	private void Start()
