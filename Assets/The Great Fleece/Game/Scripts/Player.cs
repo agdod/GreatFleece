@@ -25,6 +25,12 @@ public class Player : MonoBehaviour
 		_destination = transform.position;
 	}
 
+	private void OnEnable()
+	{
+		// Freeze player movement by assigning its destination to its current tranform postion
+		_destination = transform.position;
+	}
+
 	void Update()
 	{
 		// Get left mouse button click
@@ -123,7 +129,7 @@ public class Player : MonoBehaviour
 			_anim.SetBool("isWalk", true);
 		}
 	}
-
+	
 	void SendAIsToCoinSpot(Vector3 position)
 	{
 		if (_guardController != null)
