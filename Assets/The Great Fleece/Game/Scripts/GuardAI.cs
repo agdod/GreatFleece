@@ -14,9 +14,13 @@ public class GuardAI : MonoBehaviour
 	private bool _isDistracted = false;
 	private Vector3 _distractPos;
 	private int _wayPointIndex = 0;
+	private AudioSource _audio;
+	private bool _hasSfx;
 
 	private void Start()
 	{
+		_audio = GetComponent<AudioSource>();
+		
 		_navAgent = GetComponent<NavMeshAgent>();
 		if (_navAgent == null)
 		{
@@ -37,6 +41,8 @@ public class GuardAI : MonoBehaviour
 			if (_anim != null)
 			{
 				_anim.SetBool("isWalking", false);
+				_hasSfx = false;
+				_audio.Stop();
 			}
 		}
 	}
@@ -48,6 +54,12 @@ public class GuardAI : MonoBehaviour
 			if (_anim != null)
 			{
 				_anim.SetBool("isWalking", true);
+				if (!_hasSfx)
+				{
+					_audio.Play();
+					_hasSfx = true;
+				}
+				
 			}
 			if (!_isDistracted)
 			{
@@ -118,6 +130,8 @@ public class GuardAI : MonoBehaviour
 		if (_anim != null)
 		{
 			_anim.SetBool("isWalking", false);
+			_audio.Stop();
+			_hasSfx = false;
 		}
 
 		// Check Guard isnt Stationary - i.e has more than one waypoint - 
