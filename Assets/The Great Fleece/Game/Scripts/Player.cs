@@ -9,10 +9,11 @@ public class Player : MonoBehaviour
 	[SerializeField] private NavMeshAgent _agent;
 	[SerializeField] private Animator _anim;
 	[SerializeField] private GuardController _guardController;
+	[SerializeField] private GameObject _newPostion; // Position after Sleeping Guard Cutscene
 
 	private bool _coinTossed = false;
 	private Vector3 _destination;
-
+	
 	private void Start()
 	{
 		// Collect the navmesh agent component
@@ -136,5 +137,12 @@ public class Player : MonoBehaviour
 		{
 			_guardController.DistractGuards(position);
 		}
+	}
+
+	public void RepositonPlayer()
+	{
+		// Repostion player for after Sleeping Guard CutScene
+		transform.position = _newPostion.transform.position;
+		transform.rotation = _newPostion.transform.rotation;
 	}
 }

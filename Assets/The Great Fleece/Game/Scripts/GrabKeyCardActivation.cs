@@ -11,9 +11,11 @@ public class GrabKeyCardActivation : MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
-			// disable the card from the GO.
+			// disable the card from the Sleeping Guard GO.
 			_keyCard.SetActive(false);
 			GameManager.Instance.HasCard = true;
+			// Repostion Player ready for exit of CutScene.
+			other.GetComponent<Player>().RepositonPlayer();
 			_cutSceneManager.EnableSleepingGuard();
 		}
 	}
