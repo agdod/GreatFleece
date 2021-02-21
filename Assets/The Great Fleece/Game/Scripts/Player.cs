@@ -103,23 +103,7 @@ public class Player : MonoBehaviour
 	void CheckPlayerPosition()
 	{
 		// if player has arrived at destination
-
-		// ***
-		// *** Alternative check for distance between player and target
-		// *** using vector3.distance , and check if its less than 1
-		// ***
-		
-		// Floor Hit from raycast is 1 d.p
-		// Convert float to double and round to 1 d.p
-
-		double xPos = System.Math.Round(transform.position.x,1);
-		double zPos = System.Math.Round(transform.position.z,1);
-
-		double destinationX = System.Math.Round(_destination.x, 1);
-		double destinationZ = System.Math.Round(_destination.z, 1);
-		float distance = Vector3.Distance(transform.position, _destination);
-		// Debug.Log("xPos,zPos : " + xPos + "," + zPos);
-		//if(xPos == destinationX && zPos == destinationZ)
+		float distance = Vector3.Distance(transform.position,_destination);
 		if (distance < 1.0f)
 		{
 			// player is idle at destination
