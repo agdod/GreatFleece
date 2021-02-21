@@ -11,10 +11,9 @@ public class Player : MonoBehaviour
 	[SerializeField] private GuardController _guardController;
 	[SerializeField] private GameObject _newPostion; // Position after Sleeping Guard Cutscene
 
-	private float distance;
 	private bool _coinTossed = false;
 	private Vector3 _destination;
-	
+
 	private void Start()
 	{
 		// Collect the navmesh agent component
@@ -42,28 +41,22 @@ public class Player : MonoBehaviour
 		}
 		if (Input.GetMouseButtonDown(1))
 		{
-			if (!_coinTossed )
+			if (!_coinTossed)
 			{
 				_anim.SetTrigger("Throw");
-				// Add 0.5s delay before instantie coin to fit more wiht animation
+				// *** TO DO *** - Add 0.5s delay before instantie coin to fit more wiht animation
 				RayCastPosition(false);
 			}
-			
+
 		}
 		CheckPlayerPosition();
-	}
-
-	void GetAnimationState()
-	{
-		// Collect current animation state to return to after throw
-		
 	}
 
 	void RayCastPosition(bool player)
 	{
 		// if player is true left mouse button was clikced and player is moved
 		// else right mouse button was clicked and coin is tossed
-		
+
 		// Cast a ray from mouse position
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
@@ -75,6 +68,8 @@ public class Player : MonoBehaviour
 			}
 			else
 			{
+				//  *** -- TO DO -- ***
+				//  Check for floor to make sure coin is tossed to floor
 				CoinToss(hit.point);
 			}
 		}
@@ -88,7 +83,7 @@ public class Player : MonoBehaviour
 			Instantiate(_coinPrefab, tossToPos, Quaternion.identity);
 			SendAIsToCoinSpot(tossToPos);
 		}
-		
+
 	}
 
 	void MovePlayer(Vector3 moveToPos)
@@ -104,7 +99,7 @@ public class Player : MonoBehaviour
 	void CheckPlayerPosition()
 	{
 		// if player has arrived at destination
-		distance = Vector3.Distance(transform.position,_destination);
+		float distance = Vector3.Distance(transform.position, _destination);
 		if (distance < 2.0f)
 		{
 			// player is idle at destination
@@ -116,7 +111,7 @@ public class Player : MonoBehaviour
 			_anim.SetBool("isWalk", true);
 		}
 	}
-	
+
 	void SendAIsToCoinSpot(Vector3 position)
 	{
 		if (_guardController != null)
