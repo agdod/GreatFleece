@@ -117,9 +117,10 @@ public class Player : MonoBehaviour
 
 		double destinationX = System.Math.Round(_destination.x, 1);
 		double destinationZ = System.Math.Round(_destination.z, 1);
-
+		float distance = Vector3.Distance(transform.position, _destination);
 		// Debug.Log("xPos,zPos : " + xPos + "," + zPos);
-		if(xPos == destinationX && zPos == destinationZ)
+		//if(xPos == destinationX && zPos == destinationZ)
+		if (distance < 1.0f)
 		{
 			// player is idle at destination
 			_anim.SetBool("isWalk", false);
