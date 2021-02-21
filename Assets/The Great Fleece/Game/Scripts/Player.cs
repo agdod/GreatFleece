@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private GuardController _guardController;
 	[SerializeField] private GameObject _newPostion; // Position after Sleeping Guard Cutscene
 
+	private float distance;
 	private bool _coinTossed = false;
 	private Vector3 _destination;
 	
@@ -103,8 +104,8 @@ public class Player : MonoBehaviour
 	void CheckPlayerPosition()
 	{
 		// if player has arrived at destination
-		float distance = Vector3.Distance(transform.position,_destination);
-		if (distance < 1.0f)
+		distance = Vector3.Distance(transform.position,_destination);
+		if (distance < 2.0f)
 		{
 			// player is idle at destination
 			_anim.SetBool("isWalk", false);
