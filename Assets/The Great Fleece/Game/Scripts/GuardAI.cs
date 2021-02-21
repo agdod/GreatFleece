@@ -41,8 +41,12 @@ public class GuardAI : MonoBehaviour
 			if (_anim != null)
 			{
 				_anim.SetBool("isWalking", false);
-				_hasSfx = false;
-				_audio.Stop();
+				if (_audio != null)
+				{
+					_hasSfx = false;
+					_audio.Stop();
+				}
+				
 			}
 		}
 	}
@@ -56,8 +60,12 @@ public class GuardAI : MonoBehaviour
 				_anim.SetBool("isWalking", true);
 				if (!_hasSfx)
 				{
-					_audio.Play();
-					_hasSfx = true;
+					if(_audio != null)
+					{
+						_audio.Play();
+						_hasSfx = true;
+					}
+					
 				}
 				
 			}
@@ -84,7 +92,7 @@ public class GuardAI : MonoBehaviour
 			// has guard arrived at current target
 
 			float distance = Vector3.Distance(transform.position, _wayPoints[_wayPointIndex].position);
-			if (distance < 1.0f && _targetReached == false)
+			if (distance < 2.0f && _targetReached == false)
 			{
 
 				// Idle guard pause if at start or end of way points
@@ -130,8 +138,12 @@ public class GuardAI : MonoBehaviour
 		if (_anim != null)
 		{
 			_anim.SetBool("isWalking", false);
-			_audio.Stop();
-			_hasSfx = false;
+			if (_audio != null)
+			{
+				_audio.Stop();
+				_hasSfx = false;
+			}
+			
 		}
 
 		// Check Guard isnt Stationary - i.e has more than one waypoint - 
